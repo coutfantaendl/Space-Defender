@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float speed;
 
-    [SerializeField] int damage = 1;
+    [SerializeField] int damage;
+
     void Update()
     {
         transform.Translate(Vector2.down * speed * Time.deltaTime);
@@ -15,6 +16,10 @@ public class EnemyBullet : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             collision.GetComponent<IDamageable>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
+        else if (collision.CompareTag("Boundary"))
+        {
             Destroy(gameObject);
         }
     }

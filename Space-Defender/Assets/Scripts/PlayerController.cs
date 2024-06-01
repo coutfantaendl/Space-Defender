@@ -17,20 +17,20 @@ public class PlayerController : MonoBehaviour
         weapon = GetComponent<IWeapon>();
     }
 
-    void Update()
+    private void Update()
     {
         HandleMovement();
         HandleShooting();
     }
 
-    void HandleMovement()
+    private void HandleMovement()
     {
         Vector2 movement = input.GetMovementInput() * moveSpeed * Time.deltaTime;
 
         transform.Translate(movement);
     }
 
-    void HandleShooting()
+    private void HandleShooting()
     {
         if(input.isShooting() && Time.time > nextFireTime )
         {

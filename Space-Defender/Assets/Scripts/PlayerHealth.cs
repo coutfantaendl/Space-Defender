@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
@@ -12,7 +11,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private int currentHealth;
 
-    void Start()
+    private void Start()
     {
         currentHealth = maxHealth;
     }
@@ -21,18 +20,19 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         currentHealth -= damage;
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
+
         UpdateHealthUI();
     }
 
     private void UpdateHealthUI()
     {
-        for(int i = 0; i < healthIcons.Length; i++)
+        for (int i = 0; i < healthIcons.Length; i++)
         {
-            if(i < currentHealth)
+            if (i < currentHealth)
             {
                 healthIcons[i].sprite = fullHeart;
             }

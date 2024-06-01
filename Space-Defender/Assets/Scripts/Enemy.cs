@@ -2,25 +2,34 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    public float speed;
-    public int health;
-
     [SerializeField] private float fireRate;
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPoint;
-
+  
+    private float speed = 2.3f;
+    private int health = 1;
     private float nextFireTime = 0f;
 
     private IMovementPattern movementPattern;
 
-    private void Awake()
+    private bool isInitialize = false;
+
+    public void Initialize(float Speed, int Health)
     {
         movementPattern = GetComponent<IMovementPattern>();
+
+        speed = Speed;
+        health = Health;
+
+        isInitialize = true;
     }
 
-    void Update()
+    private void Update()
     {
+        if (!isInitialize)
+            return;
+
         Move();
         Shoot();
     }
@@ -32,7 +41,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Shoot()
     {
-        if(Time.time > nextFireTime)
+        if (Time.time > nextFireTime)
         {
             Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
 
@@ -43,7 +52,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if(health <= 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
@@ -51,15 +60,19 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             collision.GetComponent<IDamageable>().TakeDamage(1);
             Destroy(gameObject);
         }
-        else if(collision.CompareTag("PlayerBullet"))
+        else if (collision.CompareTag("PlayerBullet"))
         {
             TakeDamage(1);
             Destroy(collision.gameObject);
+        }
+        else if (collision.CompareTag("Boundary"))
+        {
+            Destroy(gameObject);
         }
     }
 }
