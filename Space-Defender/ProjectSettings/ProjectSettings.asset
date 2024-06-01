@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: d8cab629b75124f42ad3e8b3307f4041
+  productGUID: 7a64eb6da6c9dc740a17bbda3eab5359
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -793,10 +793,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: c2b64e78-5c25-4014-bebf-781e18f71241
+  cloudProjectId: 02a536d9-3108-445c-8180-2357e2c49df4
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Space-Defender 2024-05-31_23-31-31
+  projectName: Space-Defender 2024-06-01_02-53-37
   organizationId: fantasmmm
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
