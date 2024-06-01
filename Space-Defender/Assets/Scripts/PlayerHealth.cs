@@ -25,6 +25,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         {
             Die();
         }
+        UpdateHealthUI();
     }
 
     private void UpdateHealthUI()
