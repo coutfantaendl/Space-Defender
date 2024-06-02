@@ -5,7 +5,9 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
 
-    void Update()
+    private bool isSoundEnable = true;
+
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -38,5 +40,17 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         RestartLevel();
+    }
+
+    public void ExitGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public void ToggleSound()
+    {
+        isSoundEnable = !isSoundEnable;
+
+        AudioListener.pause = !isSoundEnable;
     }
 }

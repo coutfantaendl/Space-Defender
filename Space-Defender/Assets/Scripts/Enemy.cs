@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPoint;
+
+    [SerializeField] private AudioSource bulletSound;
   
     private float speed = 2.2f;
     private int health = 1;
@@ -45,6 +47,8 @@ public class Enemy : MonoBehaviour, IDamageable
         if (Time.time > nextFireTime)
         {
             Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+
+            bulletSound.Play();
 
             nextFireTime = Time.time + fireRate;
         }
