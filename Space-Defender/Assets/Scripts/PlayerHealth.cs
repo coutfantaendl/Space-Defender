@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
@@ -45,7 +46,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        Debug.Log("Player Died");
+        ScoreManager.Instance.ResetScore();
+
+        FindObjectOfType<PauseMenu>().RestartLevel();
     }
 
 }

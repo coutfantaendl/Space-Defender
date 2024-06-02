@@ -3,11 +3,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] private float fireRate;
+    [SerializeField] private int scoreValue;
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPoint;
   
-    private float speed = 2.3f;
+    private float speed = 2.2f;
     private int health = 1;
     private float nextFireTime = 0f;
 
@@ -54,6 +55,7 @@ public class Enemy : MonoBehaviour, IDamageable
         health -= damage;
         if (health <= 0)
         {
+            Dead();
             Destroy(gameObject);
         }
     }
@@ -62,6 +64,8 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         if (collision.CompareTag("Player"))
         {
+            Dead();
+
             collision.GetComponent<IDamageable>().TakeDamage(1);
             Destroy(gameObject);
         }
@@ -74,5 +78,10 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Dead()
+    {
+        ScoreManager.Instance.AddScore(scoreValue);
     }
 }
